@@ -52,28 +52,15 @@ public class OverDrawAspect {
     return result;
   }
 
-//  @Before("methodAnnotatedWithDebugTrace())")
-//  public Object weaveBeforeJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
-//    joinPoint.getThis()
-//    printOverDrawCounter();
-//    Object result = joinPoint.proceed();
-//    return result;
-//  }
+
   @Around("methodAnnotatedWithActivity()")
   public Object weaveJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
-//    MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-//    String className = methodSignature.getDeclaringType().getSimpleName();
-//    String methodName = methodSignature.getName();
 
     enterMethod(joinPoint);
 
-//    long startNanos = System.nanoTime();
+//
     Object result = joinPoint.proceed();
-//    long stopNanos = System.nanoTime();
-//    long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
-
-//    exitMethod(joinPoint, result, lengthMillis);
-
+//
     return result;
   }
 
@@ -97,33 +84,6 @@ public class OverDrawAspect {
     printOverDrawCounter(asTag(cls),activity);
     if (!enabled) return;
 
-    CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
-
-//    Class<?> cls = codeSignature.getDeclaringType();
-//    String methodName = codeSignature.getName();
-//    String[] parameterNames = codeSignature.getParameterNames();
-//    Object[] parameterValues = joinPoint.getArgs();
-//
-//    StringBuilder builder = new StringBuilder("\u21E2 ");
-//    builder.append(methodName).append('(');
-//    for (int i = 0; i < parameterValues.length; i++) {
-//      if (i > 0) {
-//        builder.append(", ");
-//      }
-//      builder.append(parameterNames[i]).append('=');
-//      builder.append(Strings.toString(parameterValues[i]));
-//    }
-//    builder.append(')');
-//
-//    if (Looper.myLooper() != Looper.getMainLooper()) {
-//      builder.append(" [Thread:\"").append(Thread.currentThread().getName()).append("\"]");
-//    }
-//
-//    Log.v(asTag(cls), builder.toString());
-//
-//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-//
-//    }
   }
 
   private static void exitMethod(ProceedingJoinPoint joinPoint, Object result, long lengthMillis) {
