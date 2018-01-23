@@ -5,6 +5,14 @@ import org.aspectj.tools.ajc.Main
 
 apply plugin: 'com.android.library'
 
+ext{
+    //use by maven.gradle
+    version = getProperty("AAR_ASPECTJ_VERSION")
+    artifactId = "aspectj"
+    groupId = "com.wwish.overdraw"
+    packaging = "aar"
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
     buildToolsVersion rootProject.ext.buildToolsVersion as String

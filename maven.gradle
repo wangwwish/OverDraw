@@ -1,0 +1,30 @@
+apply plugin: 'maven'
+
+def getUrl(){
+    return hasProperty('MAVEN_URL') ? MAVEN_URL : ""
+}
+
+def getUser(){
+    return hasProperty('MAVEN_USER') ? MAVEN_USER : ""
+}
+
+def getPass(){
+    return hasProperty('MAVEN_PASS') ? MAVEN_PASS : ""
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        name = 'AARDeployer'
+        repository(url: getUrl()) {
+            authentication(userName: getUser(), password: getPass())
+        }
+        snapshotRepository(url: getUrl()) {
+            authentication(userName: getUser(), password: getPass())
+        }
+        pom.version = project.ext.version
+        pom.artifactId = project.ext.artifactId
+        pom.groupId = project.ext.groupId
+        pom.name = project.ext.artifactId
+        pom.packaging = project.ext.packaging
+    }
+}
