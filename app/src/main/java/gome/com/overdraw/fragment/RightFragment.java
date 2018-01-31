@@ -28,7 +28,7 @@ public class RightFragment extends Fragment {
     }
 
     @Override
-    @com.wwish.aspectj.annotation.Fragment
+//    @com.wwish.aspectj.annotation.Fragment
     public void onPause() {
         super.onPause();
     }

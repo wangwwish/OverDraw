@@ -1,1 +1,1 @@
-include ':app', ':net', ':plugin','aspectj','plugin'
+include ':app', ':net', ':plugin', ':buildsrc',':aspectj', ':ganalytics'

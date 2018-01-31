@@ -9,6 +9,7 @@ import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.wwish.aspectj.annotation.Activity;
@@ -19,8 +20,9 @@ import java.lang.reflect.Method;
 
 import gome.com.overdraw.fragment.LeftFragment;
 import gome.com.overdraw.fragment.RightFragment;
+import gome.com.overdraw.utils.OverDraw;
 
-public class MainActivity extends AppCompatActivity implements LeftFragment.MyListener {
+public class MainActivity extends AppCompatActivity implements LeftFragment.MyListener, View.OnClickListener {
 
     /**
      * 实现MyListener,当LeftFragment中点击第一页的时候，让RightFragment显示第一页信息,同理当点击第二页的时候，RightFragment显示第二页信息
@@ -76,6 +78,15 @@ public class MainActivity extends AppCompatActivity implements LeftFragment.MyLi
         super.onPause();
     }
 
+
+
+//     if(isDebug()){
+//        OverDrawView.printActivityOverDrawCounter(this);
+//    }
+    private boolean isDebug(){
+        return true;
+    }
+
     private void printOverDrawCounter(){
         if(Build.VERSION.SDK_INT !=19){
             return;
@@ -102,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements LeftFragment.MyLi
                     methodGetOverdraw.setAccessible(true);
                     Float result=(Float)methodGetOverdraw.invoke(Gl20Renderer,GLES20Canvas);
                     Log.d("wangwei-test","------------------ : "+result);
+                    Log.d(this.getLocalClassName(),"------------------ : "+result);
                 }
 
             }
@@ -175,5 +187,10 @@ public class MainActivity extends AppCompatActivity implements LeftFragment.MyLi
             }
             data.recycle();
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
